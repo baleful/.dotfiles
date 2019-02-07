@@ -1,0 +1,40 @@
+#
+# Defines environment variables.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Ensure that a non-login, non-interactive shell has a defined environment.
+if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprofile"
+fi
+
+
+# Prompt
+SPACESHIP_CHAR_SYMBOL="❯ "
+
+
+# Environment
+OS=$(uname -s); export OS
+
+
+# Homebrew
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+
+# Sdkman
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+# Brew dependencies
+function brew_dep_tree() {
+  brew list | while read cask; do echo -n $fg[blue] $cask $fg[white]; brew deps $cask | awk '{printf(" %s ", $0)}'; echo ""; done
+}
+
+
+# Installation specific config
+if [[ -a $HOME/.zspec ]]; then
+   source $HOME/.zspec
+fi
