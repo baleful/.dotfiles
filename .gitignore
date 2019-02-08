@@ -1,3 +1,8 @@
-st3/Package control.cache
-st3/*bundle*
-st3/*.last-run
+atom/.apm
+atom/.node-gyp
+atom/blob-store
+atom/compile-cache
+atom/recovery
+atom/packages
+atom/storage
+atom/github.cson
