@@ -19,7 +19,7 @@ link_to_dir() {
 }
 
 # atom
-ln -sfn "$DIR/atom/" "$HOME/.atom/"
+ln -sfn "$DIR/atom" "$HOME/.atom"
 
 # iterm2
 plutil -convert binary1 -o "$HOME/Library/Preferences/com.googlecode.iterm2.plist" "$DIR/iterm2/iterm2.plist"
