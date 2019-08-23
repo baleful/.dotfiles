@@ -17,7 +17,7 @@ set +o noclobber
 
 
 # Editor
-export EDITOR="$(which subl) -n -w"
+export EDITOR="$(which atom) --wait"
 
 
 # zsh completions
