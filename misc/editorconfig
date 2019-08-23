@@ -1,0 +1,29 @@
+# .editorconfig
+
+[*]
+indent_style = space
+indent_size = 4
+continuation_indent_size = 8
+
+end_of_line = lf
+charset = utf-8
+
+# General tidying
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.properties]
+charset = latin1
+
+# Windows
+[*.{cs,cmd,bat}]
+indent_style = tab
+end_of_line = crlf
+
+# YAML
+[*.{yaml,yml}]
+indent_style = space
+indent_size = 2
+
+# Markdown
+trim_trailing_whitespace = false
