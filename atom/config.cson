@@ -14,7 +14,7 @@
     ]
     titleBar: "custom"
   editor:
-    fontFamily: "Hasklig-Medium, Source Code Pro, monospace"
+    fontFamily: "Hasklig, Source Code Pro, monospace"
   "exception-reporting":
     userId: "3936194a-a7c5-4a98-9af0-c9fcd7fa0bed"
   minimap:
@@ -25,6 +25,9 @@
       "git-diffDecorationsZIndex": 0
       "highlight-selected": true
       "highlight-selectedDecorationsZIndex": 0
+  swackets:
+    colorParens: true
+    colorSquareBrackets: true
   welcome:
     showOnStartup: false
 ".java.source":
