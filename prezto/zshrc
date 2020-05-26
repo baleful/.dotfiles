@@ -17,12 +17,8 @@ set +o noclobber
 
 
 # Editor
-export EDITOR="$(which atom) --wait"
+export EDITOR="$(which code) --wait"
 
 
 # zsh completions
 fpath=(/usr/local/share/zsh-completions $fpath)
-
-
-# Python
-export PATH=$(python -m site --user-base)/bin:$PATH
