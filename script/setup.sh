@@ -2,7 +2,7 @@
 
 # Variables
 DIR=$(dirname `pwd`)
-IGNORE=(atom iterm2 script)
+IGNORE=(script)
 
 # FUnctions
 link_to_dir() {
@@ -17,12 +17,6 @@ link_to_dir() {
     ln -sfn "$FILE" "$TARGET_FILENAME"
   done
 }
-
-# atom
-ln -sfn "$DIR/atom" "$HOME/.atom"
-
-# iterm2
-plutil -convert binary1 -o "$HOME/Library/Preferences/com.googlecode.iterm2.plist" "$DIR/iterm2/iterm2.plist"
 
 # symlinks to home
 for SUBDIR in ${DIR}/*/ ; do

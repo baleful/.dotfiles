@@ -1,9 +1,0 @@
-atom/.apm
-atom/.atom-socket*
-atom/.node-gyp
-atom/blob-store
-atom/compile-cache
-atom/recovery
-atom/packages
-atom/storage
-atom/github.cson
