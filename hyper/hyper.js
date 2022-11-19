@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 16,
 
     // font family with optional fallbacks
-    fontFamily: 'Hasklig, monospace',
+    fontFamily: '"Hasklug Nerd Font", monospace',
 
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',

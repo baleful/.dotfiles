@@ -1,0 +1,99 @@
+## GENERAL
+# Environment
+OS=$(uname -s); export OS
+
+# prompt
+eval "$(starship init zsh)"
+
+# Editor
+export EDITOR="$(which code) --wait"
+
+# Silly navigation habit
+alias ~="cd ~"
+
+## DEVELOPMENT
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PATH:/usr/local/bin"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+# SDKman - Java
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# NVM - lazy load
+lazynvm() {
+    unset -f nvm node npm
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
+}
+
+nvm() {
+  lazynvm
+  nvm $@
+}
+
+node() {
+  lazynvm
+  node $@
+}
+
+npm() {
+  lazynvm
+  npm $@
+}
+
+# Rust
+source "$HOME/.cargo/env"
+
+## CLI Enhancements
+# bat - cat replacement
+if [ "$(command -v bat)" ]; then
+    unalias -m 'cat'
+    alias cat='bat -pp --theme="Dracula"'
+    alias cate='bat --theme="Dracula" --pager="less -R"'
+fi
+
+# exa - ls replacement
+export EXA_COLORS="sn=0;32:sb=0;32:uu=0;33:gu=0:di=0;35"
+if [ "$(command -v exa)" ]; then
+    unalias -m 'ls'
+    alias ls='exa --icons --git -s type'
+fi
+
+# fzf
+export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
+export FZF_CTRL_T_OPTS="--min-height 30 --preview-window down:60% --preview-window noborder --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# zoxide
+eval "$(zoxide init zsh)"
+alias j="zi"
+
+# plugins
+source /usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# zsh completions
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+
+    if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+        compinit -i
+    else
+        compinit -C
+    fi
+fi
+
+
+## SPECIAL CASES
+if [[ -a $HOME/.zspec ]]; then
+   source $HOME/.zspec
+fi
