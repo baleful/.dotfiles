@@ -2,7 +2,7 @@
 # Environment
 OS=$(uname -s); export OS
 
-# prompt
+# Prompt
 eval "$(starship init zsh)"
 
 # Editor
@@ -10,6 +10,7 @@ export EDITOR="$(which code) --wait"
 
 # Silly navigation habit
 alias ~="cd ~"
+
 
 ## DEVELOPMENT
 # Pyenv
@@ -22,32 +23,14 @@ eval "$(pyenv init -)"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# NVM - lazy load
-lazynvm() {
-    unset -f nvm node npm
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
-}
-
-nvm() {
-  lazynvm
-  nvm $@
-}
-
-node() {
-  lazynvm
-  node $@
-}
-
-npm() {
-  lazynvm
-  npm $@
-}
+# fnm - Node
+eval "$(fnm env --use-on-cd)"
 
 # Rust
 source "$HOME/.cargo/env"
 
-## CLI Enhancements
+
+## CLI ENHANCEMENTS
 # bat - cat replacement
 if [ "$(command -v bat)" ]; then
     unalias -m 'cat'
@@ -62,12 +45,12 @@ if [ "$(command -v exa)" ]; then
     alias ls='exa --icons --git -s type'
 fi
 
-# fzf
+# fzf - fuzzy finder
 export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
 export FZF_CTRL_T_OPTS="--min-height 30 --preview-window down:60% --preview-window noborder --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# zoxide
+# zoxide - cd replacement
 eval "$(zoxide init zsh)"
 alias j="zi"
 
@@ -79,7 +62,7 @@ source /usr/local/share/zsh-history-substring-search/zsh-history-substring-searc
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# zsh completions
+# zsh completions with daily compinit refresh
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
