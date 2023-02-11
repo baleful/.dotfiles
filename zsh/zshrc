@@ -23,12 +23,6 @@ eval "$(pyenv init -)"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# fnm - Node
-eval "$(fnm env --use-on-cd)"
-
-# Rust
-source "$HOME/.cargo/env"
-
 
 ## CLI ENHANCEMENTS
 # bat - cat replacement
