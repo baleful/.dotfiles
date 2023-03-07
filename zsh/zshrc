@@ -2,6 +2,10 @@
 # Environment
 OS=$(uname -s); export OS
 
+# Brew
+export PATH="/opt/homebrew/bin:$PATH"
+export HOMEBREW_PREFIX=$(brew --prefix)
+
 # Prompt
 eval "$(starship init zsh)"
 
@@ -15,7 +19,6 @@ alias ~="cd ~"
 ## DEVELOPMENT
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PATH:/usr/local/bin"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
@@ -49,16 +52,16 @@ eval "$(zoxide init zsh)"
 alias j="zi"
 
 # plugins
-source /usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $HOMEBREW_PREFIX/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # zsh completions with daily compinit refresh
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
 
     autoload -Uz compinit
 
