@@ -1,6 +1,7 @@
 ## GENERAL
 # Environment
 OS=$(uname -s); export OS
+OP_BIOMETRIC_UNLOCK_ENABLED=true
 
 # Brew
 export PATH="/opt/homebrew/bin:$PATH"
