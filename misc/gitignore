@@ -155,3 +155,15 @@ __init__.py
 
 # Ensime
 .ensime
+
+
+# VSCode
+.vscode/
+
+
+# Metals
+.metals/
+
+
+# Terraform
+.terraform/modules/modules.json
